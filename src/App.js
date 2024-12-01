@@ -5,7 +5,7 @@ function App() {
   const [data, setData] = useState(""); 
 
   const getData=async()=>{
-    const response = await Axios.get("/json");
+    const response = await Axios.get("https://evacportal-backend.onrender.com/json");
     setData(response.data);
   }
 
@@ -22,7 +22,7 @@ function App() {
       ) : (
         <div>
           <h2>Data</h2>
-          <p><strong>Name:</strong> {data}</p>
+          <p><strong>Name:</strong> {data.data}</p>
         </div>
       )}
     </div>
