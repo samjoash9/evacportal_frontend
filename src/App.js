@@ -22,7 +22,7 @@ function App() {
       ) : (
         <div>
           <h2>Data</h2>
-          <p><strong>Name:</strong> {data.message}</p>
+          <p><strong>Name:</strong> {data.data.id}</p>
         </div>
       )}
     </div>
