@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 function App() {
-  const [backendData, setBackendData] = useState(null); // Initialize as null to handle the loading state
+  const [backendData, setBackendData] = useState(null);
 
   useEffect(() => {
-    fetch("/json")
+    fetch("https://evacportal-backend.onrender.com/json")
       .then((response) => response.json())
       .then((data) => {
         setBackendData(data); // Set the fetched data
