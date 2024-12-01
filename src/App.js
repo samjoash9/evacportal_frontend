@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [backendData, setBackendData] = useState(null); // Initialize as null to handle the loading state
+
+  useEffect(() => {
+    fetch("/json")
+      .then((response) => response.json())
+      .then((data) => {
+        setBackendData(data); // Set the fetched data
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Backend Data</h1>
+      
+      {/* Check if data is still loading */}
+      {backendData === null ? (
+        <p>Loading...</p>
+      ) : (
+        <div>
+          <p><strong>Message:</strong> {backendData.message}</p>
+          <p><strong>Status:</strong> {backendData.status}</p>
+
+          <h2>Data</h2>
+          <p><strong>ID:</strong> {backendData.data.id}</p>
+          <p><strong>Name:</strong> {backendData.data.name}</p>
+        </div>
+      )}
     </div>
   );
 }
