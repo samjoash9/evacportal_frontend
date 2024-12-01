@@ -5,7 +5,7 @@ function App() {
   const [data, setData] = useState(""); 
 
   const getData=async()=>{
-    const response = await Axios.get("/json");
+    const response = await Axios.get("https://evacportal-backend.onrender.com/json");
     setData(response.data);
   }
 
