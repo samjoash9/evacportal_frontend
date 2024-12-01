@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
 
 function App() {
-  const [data, setData] = useState(""); 
+  const [backendData, setBackendData] = useState(null); // Initialize as null to handle the loading state
 
-  const getData=async()=>{
-    const response = await Axios.get("/json");
-    setData(response.data);
-  }
-
-    useEffect(()=>{
-      getData()
-    }, []);
+  useEffect(() => {
+    fetch("/json")
+      .then((response) => response.json())
+      .then((data) => {
+        setBackendData(data); // Set the fetched data
+      });
+  }, []);
 
   return (
     <div>
       <h1>Backend Data</h1>
       
-      {data === null ? (
+      {/* Check if data is still loading */}
+      {backendData === null ? (
         <p>Loading...</p>
       ) : (
         <div>
-          <h2>Data</h2>
-          <p><strong>Name:</strong> {data.data}</p>
+          <p><strong>Data:</strong> {backendData.data}</p>
         </div>
       )}
     </div>
